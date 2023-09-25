@@ -1,0 +1,392 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: "Montserrat", sans-serif;
+  background: linear-gradient(
+    90deg,
+    var(--blue-300) 0%,
+    var(--blue-200) 0%,
+    var(--green-100) 0%,
+    var(--blue-300) 100%
+  );
+}
+button {
+  background: none;
+  outline: none;
+  cursor: pointer;
+  transition: var(--transition-100);
+  border: none;
+}
+ul {
+  list-style: none;
+}
+/* Utilities */
+.flex {
+  display: flex;
+}
+.a-center {
+  align-items: center;
+}
+.f-100 {
+  flex-basis: 100%;
+}
+.g-0-5 {
+  gap: 0.5em;
+}
+.g-1 {
+  gap: 1em;
+}
+:root {
+  --blue-100: hsl(243, 100%, 7%);
+  --blue-200: hsl(190, 100%, 50%);
+  --green-100: hsl(145, 67%, 57%);
+  --blue-300: hsl(182, 83%, 47%);
+  --gold-100: hsl(54, 100%, 62%);
+  --white: white;
+  --red: red;
+  --transition-100: 0.3s ease;
+}
+
+/* Components */
+.container {
+  width: min(85%, 1400px);
+  margin-inline: auto;
+}
+#primary-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-block: 1em;
+}
+
+#primary-header .logo-holder a {
+  font-weight: 700;
+  text-decoration: none;
+  letter-spacing: 1px;
+  font-size: 20px;
+  color: var(--white);
+}
+#primary-header .logo-holder a i {
+  color: var(--gold-100);
+}
+
+#primary-header nav {
+  /* display: none; */
+  position: fixed;
+  background-color: var(--white);
+  left: -100%;
+  margin-block: 70px 50px;
+  overflow-y: auto;
+  top: 0;
+  transform: translateX(-50%);
+  padding: 2em 1em;
+  border-radius: 10px;
+  width: min(400px, 90%);
+  max-height: 90vh;
+  z-index: 999;
+  transition: var(--transition-100);
+  transition-property: left;
+}
+#primary-header nav.show {
+  left: 50%;
+}
+#primary-header nav #nav-closer {
+  color: var(--blue-100);
+  font-size: 30px;
+  margin-bottom: 1em;
+}
+
+#primary-header nav ul li {
+  text-align: center;
+}
+#primary-header nav ul li a {
+  color: var(--blue-100);
+  text-decoration: none;
+  font-weight: 600;
+  letter-spacing: 1px;
+  transition: var(--transition-100);
+  transition-property: color;
+  padding-block: 1em;
+
+  display: block;
+}
+#primary-header nav ul li a.active {
+  background-color: var(--gold-100);
+}
+
+#primary-header #nav-opener {
+  font-size: 20px;
+  color: var(--white);
+}
+.showcase {
+  padding-block: 2em;
+}
+.showcase .row {
+}
+.showcase .row .col {
+}
+.showcase .row .col .shortener-form {
+  background-color: var(--white);
+  border-radius: 10px;
+  padding: 1em;
+}
+.showcase .row .col .shortener-form .form-control {
+  margin-bottom: 1em;
+}
+.showcase .row .col .shortener-form .form-control label {
+  color: var(--blue-100);
+  font-weight: 500;
+  letter-spacing: 1px;
+  font-size: 22px;
+  display: block;
+  margin-bottom: 10px;
+}
+.showcase .row .col .shortener-form .form-control input {
+  width: 100%;
+  height: 45px;
+  border-radius: 5px;
+  outline: none;
+  border: 1px solid #777;
+  padding-inline: 10px;
+  color: var(--blue-100);
+  letter-spacing: 1px;
+}
+.showcase .row .col .shortener-form .form-control p.error-message {
+  margin-top: 5px;
+  color: var(--red);
+  font-style: italic;
+  margin-left: 5px;
+  display: none;
+}
+.showcase .row .col .shortener-form .form-control p.error-message.show {
+  display: block;
+}
+.showcase .row .col .shortener-form .form-control .customize-holder {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+}
+.showcase .row .col .shortener-form .form-control .customize-holder select {
+  height: 45px;
+  border-radius: 5px;
+  outline: none;
+  border: 1px solid #777;
+  padding-inline: 5px;
+  color: var(--blue-100);
+  letter-spacing: 1px;
+}
+.showcase .row .col .shortener-form .form-control a,
+.showcase .row .col .shortener-form .form-control button {
+  width: 100%;
+  border-radius: 5px;
+  font-size: 20px;
+  letter-spacing: 1px;
+  font-weight: 500;
+}
+.showcase .row .col .shortener-form .form-control button.shortenBtn {
+  height: 45px;
+  margin-top: 0.6em;
+  background-color: var(--green-100);
+  color: var(--white);
+}
+.showcase .row .col .shortener-form .form-control#shorten {
+  /* display: none; */
+}
+.showcase .row .col .shortener-form .form-control#shorten-result {
+  display: none;
+}
+.showcase
+  .row
+  .col
+  .shortener-form
+  .form-control#shorten-result
+  .actions-holder {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+  margin-top: 1em;
+}
+.showcase
+  .row
+  .col
+  .shortener-form
+  .form-control#shorten-result
+  .actions-holder
+  button,
+.showcase
+  .row
+  .col
+  .shortener-form
+  .form-control#shorten-result
+  .actions-holder
+  a {
+  text-decoration: none;
+  text-align: center;
+  padding-block: 0.5em;
+}
+.showcase
+  .row
+  .col
+  .shortener-form
+  .form-control#shorten-result
+  .actions-holder
+  a {
+  background-color: var(--blue-100);
+  color: var(--white);
+}
+.showcase
+  .row
+  .col
+  .shortener-form
+  .form-control#shorten-result
+  .actions-holder
+  button.copy {
+  background-color: var(--gold-100);
+  color: var(--blue-100);
+}
+
+.showcase .row .col h1 {
+  color: var(--white);
+  margin-block: 1em 0.3em;
+  font-size: 40px;
+  letter-spacing: 1px;
+}
+.showcase .row .col p {
+  color: var(--white);
+  letter-spacing: 1px;
+  line-height: 1.5;
+  font-weight: 600;
+}
+.showcase .row .col .cta-box {
+  margin-top: 1em;
+}
+.showcase .row .col .cta-box p {
+}
+.showcase .row .col .cta-box .links-box {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+  margin-block: 1em;
+}
+.showcase .row .col .cta-box .links-box a {
+  text-decoration: none;
+  padding: 0.5em;
+  width: 100%;
+  border-radius: 5px;
+  text-align: center;
+  font-weight: 600;
+  letter-spacing: 1px;
+  height: 40px;
+}
+.showcase .row .col .cta-box .links-box a.outlined {
+  border: 2px solid var(--white);
+  color: var(--white);
+}
+.showcase .row .col .cta-box .links-box a:not(.outlined) {
+  background-color: var(--white);
+  color: var(--blue-100);
+}
+
+/* Media queries */
+@media (max-height: 400px) {
+  #primary-header nav {
+    height: 200px;
+  }
+}
+
+@media (min-width: 768px) {
+  #primary-header {
+    padding-block: 1.5em;
+  }
+  #primary-header nav.active,
+  #primary-header nav {
+    position: unset;
+    margin-block: unset;
+    width: unset;
+    transform: unset;
+    padding: 0;
+    background-color: unset;
+    border-radius: unset;
+    z-index: unset;
+  }
+  #primary-header nav ul {
+    display: flex;
+    gap: 10px;
+    padding-inline: 1em;
+    border-radius: 10px;
+  }
+  #primary-header nav ul li a {
+    padding-inline: 1em;
+    border-radius: 10px;
+    transition: var(--transition-100);
+    transition-property: background-color;
+  }
+  #primary-header nav ul li a:hover {
+    background-color: var(--gold-100);
+  }
+  #primary-header nav #nav-closer,
+  #primary-header #nav-opener {
+    display: none;
+  }
+}
+@media (min-width: 900px) {
+  .showcase .row {
+    display: flex;
+    gap: 2rem;
+  }
+  .showcase .row .col:has(.shortener-form) {
+    min-width: 400px;
+  }
+  .showcase .row .col:last-of-type {
+    max-width: 500px;
+  }
+  .showcase .row .col h1 {
+    margin-block: 0 0.3em;
+  }
+  .showcase .row .col .cta-box .links-box {
+    flex-direction: row;
+  }
+  .showcase .row .col .cta-box .links-box a {
+    transition: var(--transition-100);
+    transition-property: background-color;
+  }
+  .showcase .row .col .cta-box .links-box a.outlined:hover {
+    background-color: var(--white);
+    color: var(--blue-100);
+  }
+  .showcase .row .col .cta-box .links-box a:not(.outlined):hover {
+    background-color: var(--gold-100);
+  }
+  .showcase .row .col .shortener-form .form-control .customize-holder,
+  .showcase
+    .row
+    .col
+    .shortener-form
+    .form-control#shorten-result
+    .actions-holder {
+    flex-direction: row;
+  }
+  .showcase .row .col .shortener-form .form-control .customize-holder > * {
+    flex-basis: 100%;
+  }
+  .showcase
+    .row
+    .col
+    .shortener-form
+    .form-control#shorten-result
+    .actions-holder
+    a:hover,
+  .showcase
+    .row
+    .col
+    .shortener-form
+    .form-control#shorten-result
+    .actions-holder
+    button.copy:hover,
+  .showcase .row .col .shortener-form .form-control button.shortenBtn:hover {
+    opacity: 0.8;
+  }
+}
