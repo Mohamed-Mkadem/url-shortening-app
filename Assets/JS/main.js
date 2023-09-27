@@ -1,10 +1,24 @@
-const navigation = document.getElementById('navigation')
-const navToggles = document.querySelectorAll('.nav-toggle')
+import * as index from './utils.js';
 
 
-navToggles.forEach(toggle => {
+index.navToggles.forEach(toggle => {
     toggle.addEventListener('click', () => {
-        navigation.classList.toggle('show')
-
+        index.navigation.classList.toggle('show')
     })
 })
+
+index.form.addEventListener('submit', (e) => {
+    e.preventDefault()
+})
+
+index.shortenBtn.addEventListener('click', () => {
+
+    let errors = index.checkUrl(index.urlInput, index.errorMessage)
+    if (!errors) index.sendRequest(index.urlInput.value)
+
+})
+
+
+
+
+

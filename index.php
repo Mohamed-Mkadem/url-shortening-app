@@ -12,7 +12,7 @@
         rel="stylesheet">
     <link rel="stylesheet" href="Assets/CSS/main.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <script src="Assets/JS/main.js" defer></script>
+
 </head>
 
 <body>
@@ -21,10 +21,10 @@
         <div class="showcase">
             <div class="row">
                 <div class="col">
-                    <form class="shortener-form" method="POST" >
+                    <form class="shortener-form" method="POST" id="form">
                         <div class="form-control">
                             <label for="url">Shorten Your Long URL</label>
-                            <input type="url" name="url" id="url" placeholder="Your Long URL">
+                            <input type="url" name="url" id="url"   placeholder="Your Long URL">
                             <p class="error-message">Invalid URL</p>
                         </div>
                         <div class="form-control" id="shorten">
@@ -36,16 +36,16 @@
                                 </select>
                                 <input type="text" name="alias" id="alias" placeholder="Enter Alias">
                             </div>
-                            <button class="shortenBtn">Shorten URL</button>
+                            <button type="submit" class="shortenBtn" id="shortenBtn">Shorten URL</button>
                         </div>
                         <div class="form-control " id="shorten-result">
                             <label>The Shortened URL</label>
-                            <input type="text" readonly value="https://clipzip.com/shortenedUrl">
+                            <input type="text" id="shortenedValue" readonly value="https://clipzip.com/shortenedUrl">
                             <div class="actions-holder">
                                 <a href="https://clipzip.com/shortenedUrl">Visit Link</a>
-                                <button class="copy">Copy</button>
+                                <button class="copy" type="button id="copyBtn">Copy</button>
                             </div>
-                            <button class="shortenBtn">Shorten Another URL</button>
+                            <button class="shortenBtn"  type="button id="shortenNewBtn">Shorten Another URL</button>
                         </div>
                     </form>
                 </div>
@@ -70,6 +70,8 @@
 
     </div>
 
+
+    <script type="module" src="Assets/JS/main.js" ></script>
 </body>
 
 </html>

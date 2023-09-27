@@ -254,7 +254,7 @@ ul {
   font-size: 40px;
   letter-spacing: 1px;
 }
-.showcase .row .col p {
+.showcase .row .col p:not(.error-message) {
   color: var(--white);
   letter-spacing: 1px;
   line-height: 1.5;
