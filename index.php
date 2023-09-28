@@ -37,15 +37,16 @@
                                 <input type="text" name="alias" id="alias" placeholder="Enter Alias">
                             </div>
                             <button type="submit" class="shortenBtn" id="shortenBtn">Shorten URL</button>
+                            <p class="error-message"></p>
                         </div>
                         <div class="form-control " id="shorten-result">
                             <label>The Shortened URL</label>
                             <input type="text" id="shortenedValue" readonly value="https://clipzip.com/shortenedUrl">
                             <div class="actions-holder">
-                                <a href="https://clipzip.com/shortenedUrl">Visit Link</a>
-                                <button class="copy" type="button id="copyBtn">Copy</button>
+                                <a href="https://clipzip.com/shortenedUrl" target="_blank" id="visitLink">Visit Link</a>
+                                <button class="copy" type="button" id="copyBtn">Copy</button>
                             </div>
-                            <button class="shortenBtn"  type="button id="shortenNewBtn">Shorten Another URL</button>
+                            <button class="shortenBtn"  type="button" id="shortenNewBtn">Shorten Another URL</button>
                         </div>
                     </form>
                 </div>

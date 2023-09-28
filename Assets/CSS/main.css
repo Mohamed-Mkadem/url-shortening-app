@@ -186,6 +186,10 @@ ul {
   letter-spacing: 1px;
   font-weight: 500;
 }
+.showcase .row .col .shortener-form .form-control button.shortenBtn[disabled] {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
 .showcase .row .col .shortener-form .form-control button.shortenBtn {
   height: 45px;
   margin-top: 0.6em;

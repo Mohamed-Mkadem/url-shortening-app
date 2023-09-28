@@ -12,13 +12,19 @@ index.form.addEventListener('submit', (e) => {
 })
 
 index.shortenBtn.addEventListener('click', () => {
-
     let errors = index.checkUrl(index.urlInput, index.errorMessage)
-    if (!errors) index.sendRequest(index.urlInput.value)
-
+    if (!errors) {
+        index.sendRequest(index.urlInput.value)
+        index.shortenBtn.setAttribute('disabled', true)
+    }
 })
 
+index.shortenNewBtn.addEventListener('click', () => {
+    index.shortenAnother()
+    index.shortenBtn.removeAttribute('disabled')
+})
 
-
-
+index.copyBtn.addEventListener('click', () => {
+    index.copyUrl(index.shortenedLinkInput)
+})
 
