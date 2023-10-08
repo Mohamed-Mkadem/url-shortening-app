@@ -49,18 +49,26 @@ export function sendRequest(url) {
     let data = "url=" + encodedUrl
     request.send(data)
     request.onreadystatechange = () => {
-        if (request.readyState == 4 && request.status == 200) {
-            data = JSON.parse(request.response)
-            if (data.success) {
-                shortenErrorMsg.classList.remove('show')
-                printResult(data.alias)
-                displayResult()
-            } else {
-                shortenErrorMsg.textContent = data.error
+        if (request.readyState == 4) {
+            if (request.status === 200) {
+                data = JSON.parse(request.response)
+                if (data.success) {
+                    shortenErrorMsg.classList.remove('show')
+                    printResult(data.alias)
+                    displayResult()
+                } else {
+                    shortenErrorMsg.textContent = data.error
+                    shortenErrorMsg.classList.add('show')
+                }
+            }
+            else {
+                shortenErrorMsg.textContent = "An Error Occured! Please Try Later"
                 shortenErrorMsg.classList.add('show')
+                shortenBtn.removeAttribute('disabled')
             }
         }
     }
+
 }
 
 export function displayResult() {
@@ -77,9 +85,14 @@ export function shortenAnother() {
 }
 
 export function printResult(alias) {
-    shortenedLinkInput.value = alias
+    shortenedLinkInput.value = fullUrl(alias)
     urlInput.setAttribute('readonly', true)
-    visitLink.href = `http://localhost:8000/${alias}`
+    visitLink.href = fullUrl(alias)
+
+}
+
+export function fullUrl(alias) {
+    return `http://localhost:8000/${alias}`
 }
 
 export function copyUrl(url) {

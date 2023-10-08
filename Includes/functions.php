@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * Summary of isPost
+ * @return void
+ */
 function isPost()
 {
     if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
@@ -10,6 +14,10 @@ function isPost()
         exit();
     }
 }
+/**
+ * Summary of isAjax
+ * @return void
+ */
 function isAjax()
 {
 
@@ -22,6 +30,10 @@ function isAjax()
     }
 }
 
+/**
+ * Summary of isUrlParameterMissing
+ * @return void
+ */
 function isUrlParameterMissing()
 {
     if (!isset($_POST['url'])) {
@@ -32,6 +44,11 @@ function isUrlParameterMissing()
         exit();
     }
 }
+/**
+ * Summary of isValidUrl
+ * @param mixed $url
+ * @return void
+ */
 function isValidUrl($url)
 {
     if (!filter_var($url, FILTER_VALIDATE_URL)) {
@@ -44,6 +61,12 @@ function isValidUrl($url)
 
 }
 
+/**
+ * Summary of doesAliasUsed
+ * @param mixed $conn
+ * @param mixed $alias
+ * @return mixed
+ */
 function doesAliasUsed($conn, $alias)
 {
     $stmt = $conn->prepare("SELECT COUNT(*) FROM links WHERE alias = :alias");
@@ -55,6 +78,11 @@ function doesAliasUsed($conn, $alias)
     return $count;
 
 }
+/**
+ * Summary of creatingAlias
+ * @param mixed $url
+ * @return string
+ */
 function creatingAlias($url)
 {
 
@@ -64,6 +92,12 @@ function creatingAlias($url)
 
 }
 
+/**
+ * Summary of uniqueAlias
+ * @param mixed $conn
+ * @param mixed $url
+ * @return string
+ */
 function uniqueAlias($conn, $url)
 {
     $alias = creatingAlias($url);
@@ -73,8 +107,16 @@ function uniqueAlias($conn, $url)
     }
 
     return $alias;
-};
+}
+;
 
+/**
+ * Summary of insertRecord
+ * @param mixed $conn
+ * @param mixed $alias
+ * @param mixed $url
+ * @return mixed
+ */
 function insertRecord($conn, $alias, $url)
 {
     $query = "INSERT INTO links (long_url, alias) values(:long_url, :alias)";
@@ -88,6 +130,14 @@ function insertRecord($conn, $alias, $url)
 
 }
 
+/**
+ * Summary of response
+ * @param mixed $conn
+ * @param mixed $alias
+ * @param mixed $url
+ * @param mixed $domain
+ * @return void
+ */
 function response($conn, $alias, $url, $domain)
 {
 
@@ -113,3 +163,44 @@ function response($conn, $alias, $url, $domain)
 
     }
 }
+
+
+
+function lookupLink($conn, $uri)
+{
+    $links = getLinks($conn);
+    $link = getLink($links, $uri);
+    return $link;
+}
+
+function getLink($linksList, $uri)
+{
+    foreach ($linksList as $link) {
+        if ($link['alias'] == $uri) {
+            return $link;
+        }
+    }
+    return null;
+
+}
+
+
+function getLinks($conn)
+{
+    $stmt = $conn->prepare("SELECT * FROM links ");
+
+    $stmt->execute();
+    // $stmt->setFetchMode();
+    $links = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    return $links;
+
+}
+
+
+/**
+ * Get all aliases from the db => Done
+ * compare each on of them with the uri
+ * if yes return the alias record
+ * else return null
+ */

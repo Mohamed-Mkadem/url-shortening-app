@@ -6,7 +6,7 @@
                 <button aria-controls="#navigation" id="nav-closer" class="nav-toggle"><i
                         class="fa-regular fa-rectangle-xmark"></i></button>
                 <ul>
-                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="/app" class="active">App</a></li>
                     <li><a href="">About</a></li>
                     <li><a href="">Pricing</a></li>
                     <li><a href="">Faqs</a></li>
